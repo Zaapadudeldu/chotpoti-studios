@@ -26,7 +26,7 @@
       inset: 0;
       z-index: 200;
       pointer-events: none;
-      opacity: .045;
+      opacity: .08;
       mix-blend-mode: overlay;
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
       background-size: 180px 180px;
@@ -91,6 +91,26 @@
 
     html {
       scroll-behavior: smooth;
+    }
+
+    #cursorGlow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 150;
+      transform: translate(-50%, -50%);
+      background:
+        radial-gradient(circle at center, rgba(201, 162, 39, .16) 0%, rgba(201, 162, 39, .07) 35%, rgba(201, 162, 39, 0) 70%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+      background-size: cover, 160px 160px;
+      background-blend-mode: normal, overlay;
+      mix-blend-mode: screen;
+      opacity: 0;
+      transition: opacity .4s ease;
     }
 
     body {
@@ -230,6 +250,8 @@
 
 <body>
   <div class="grain-overlay" aria-hidden="true"></div>
+  <div id="cursorGlow" aria-hidden="true"></div>
+
   <nav id="siteNav">
     <a href="#hero" style="display:flex;align-items:center;" aria-label="Chotpoti Studios home">
       <img src="assets/logo.png" alt="Chotpoti Studios" style="height:24px;width:auto;display:block;">
@@ -367,6 +389,22 @@
     <img src="assets/logo.png" alt="Chotpoti Studios" style="height:18px;width:auto;opacity:.7;">
     <p style="color:var(--fog);font-size:.8rem;margin:0;">© 2026 Chotpoti Studios</p>
   </footer>
+
+  <script> //Cursor glow script
+    var glow = document.getElementById('cursorGlow');
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      document.addEventListener('mousemove', function (e) {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+        glow.style.opacity = '1';
+      });
+      document.addEventListener('mouseleave', function () {
+        glow.style.opacity = '0';
+      });
+    } else {
+      glow.style.display = 'none';
+    }
+  </script>
 
   <script>
     var nav = document.getElementById('siteNav');
