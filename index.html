@@ -26,7 +26,7 @@
       inset: 0;
       z-index: 200;
       pointer-events: none;
-      opacity: .08;
+      opacity: .045;
       mix-blend-mode: overlay;
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
       background-size: 180px 180px;
@@ -93,7 +93,7 @@
       scroll-behavior: smooth;
     }
 
-    #cursorGlow {
+    /* #cursorGlow {
       position: fixed;
       top: 0;
       left: 0;
@@ -111,7 +111,7 @@
       mix-blend-mode: screen;
       opacity: 0;
       transition: opacity .4s ease;
-    }
+    } */
 
     body {
       margin: 0;
@@ -250,7 +250,7 @@
 
 <body>
   <div class="grain-overlay" aria-hidden="true"></div>
-  <div id="cursorGlow" aria-hidden="true"></div>
+  <!-- <div id="cursorGlow" aria-hidden="true"></div> -->
 
   <nav id="siteNav">
     <a href="#hero" style="display:flex;align-items:center;" aria-label="Chotpoti Studios home">
@@ -390,7 +390,7 @@
     <p style="color:var(--fog);font-size:.8rem;margin:0;">© 2026 Chotpoti Studios</p>
   </footer>
 
-  <script> //Cursor glow script
+  <!-- <script> //Cursor glow script
     var glow = document.getElementById('cursorGlow');
     if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
       document.addEventListener('mousemove', function (e) {
@@ -404,7 +404,7 @@
     } else {
       glow.style.display = 'none';
     }
-  </script>
+  </script> -->
 
   <script>
     var nav = document.getElementById('siteNav');
