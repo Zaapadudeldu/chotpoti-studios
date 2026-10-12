@@ -21,6 +21,70 @@
       --hair: rgba(236, 231, 218, 0.14);
     }
 
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      pointer-events: none;
+      opacity: .045;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      background-size: 180px 180px;
+      animation: grainShift .5s steps(6) infinite;
+    }
+
+    @keyframes grainShift {
+      0% {
+        transform: translate(0, 0)
+      }
+
+      10% {
+        transform: translate(-3%, -6%)
+      }
+
+      20% {
+        transform: translate(-8%, 2%)
+      }
+
+      30% {
+        transform: translate(5%, -9%)
+      }
+
+      40% {
+        transform: translate(-4%, 6%)
+      }
+
+      50% {
+        transform: translate(-7%, -3%)
+      }
+
+      60% {
+        transform: translate(9%, 0%)
+      }
+
+      70% {
+        transform: translate(0%, 8%)
+      }
+
+      80% {
+        transform: translate(-6%, 4%)
+      }
+
+      90% {
+        transform: translate(4%, -2%)
+      }
+
+      100% {
+        transform: translate(0, 0)
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .grain-overlay {
+        animation: none
+      }
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -165,7 +229,7 @@
 </head>
 
 <body>
-
+  <div class="grain-overlay" aria-hidden="true"></div>
   <nav id="siteNav">
     <a href="#hero" style="display:flex;align-items:center;" aria-label="Chotpoti Studios home">
       <img src="assets/logo.png" alt="Chotpoti Studios" style="height:24px;width:auto;display:block;">
